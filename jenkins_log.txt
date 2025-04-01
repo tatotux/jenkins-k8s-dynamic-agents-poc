@@ -1,0 +1,357 @@
+Started by user Eduardo Uribe
+Obtained Jenkinsfile from git https://github.com/tatotux/jenkins-k8s-dynamic-agents-poc.git
+[Pipeline] Start of Pipeline
+[Pipeline] podTemplate
+[Pipeline] {
+[Pipeline] retry
+[Pipeline] {
+[Pipeline] node
+Created Pod: kuber jenkins/kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[PodInfo] jenkins/kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+	Container [jnlp] waiting [ContainerCreating] No message
+	Pod [Pending][ContainersNotReady] containers with unready status: [jnlp]
+[PodInfo] jenkins/kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+	Container [jnlp] waiting [ContainerCreating] No message
+	Pod [Pending][ContainersNotReady] containers with unready status: [jnlp]
+[PodInfo] jenkins/kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+	Container [jnlp] waiting [ContainerCreating] No message
+	Pod [Pending][ContainersNotReady] containers with unready status: [jnlp]
+Agent kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk is provisioned from template kubernetes-dynamic-agents_26-b5dhn-ldzhx
+---
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  annotations:
+    kubernetes.jenkins.io/last-refresh: "1743525432161"
+    buildUrl: "http://192.168.1.206:8080/job/kubernetes-dynamic-agents/26/"
+    runUrl: "job/kubernetes-dynamic-agents/26/"
+  labels:
+    jenkins-agent: "jenkins-agent"
+    jenkins/label-digest: "79c1580d230a71e0ac67df5928f36776ef7761bd"
+    jenkins/label: "kubernetes-dynamic-agents_26-b5dhn"
+    kubernetes.jenkins.io/controller: "http___192_168_1_206_8080x"
+  name: "kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk"
+  namespace: "jenkins"
+spec:
+  containers:
+  - args:
+    - "$(JENKINS_SECRET)"
+    - "$(JENKINS_NAME)"
+    env:
+    - name: "JENKINS_SECRET"
+      value: "********"
+    - name: "JENKINS_TUNNEL"
+      value: "192.168.1.206:50000"
+    - name: "JENKINS_AGENT_NAME"
+      value: "kubernetes-agent"
+    - name: "REMOTING_OPTS"
+      value: "-noReconnectAfter 1d"
+    - name: "JENKINS_NAME"
+      value: "kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk"
+    - name: "JENKINS_AGENT_WORKDIR"
+      value: "/home/jenkins/agent"
+    - name: "JENKINS_URL"
+      value: "http://192.168.1.206:8080"
+    image: "jenkins/inbound-agent:latest"
+    name: "jnlp"
+    resources:
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "jenkins-agent"
+  nodeSelector:
+    kubernetes.io/os: "linux"
+  restartPolicy: "Never"
+  volumes:
+  - emptyDir: {}
+    name: "jenkins-agent"
+  - emptyDir:
+      medium: ""
+    name: "workspace-volume"
+
+Running on kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk in /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/tatotux/jenkins-k8s-dynamic-agents-poc.git
+ > git init /home/jenkins/agent/workspace/kubernetes-dynamic-agents # timeout=10
+Fetching upstream changes from https://github.com/tatotux/jenkins-k8s-dynamic-agents-poc.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+ > git fetch --tags --force --progress -- https://github.com/tatotux/jenkins-k8s-dynamic-agents-poc.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/tatotux/jenkins-k8s-dynamic-agents-poc.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+Checking out Revision ecdb2841575fe840792b3edad58fc5194c2f9879 (refs/remotes/origin/main)
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f ecdb2841575fe840792b3edad58fc5194c2f9879 # timeout=10
+Commit message: "feat: Jenkins POC with Kubernetes Dynamic Agents - Complete implementation with documentation"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timeout
+Timeout set to expire in 1 hr 0 min
+[Pipeline] {
+[Pipeline] retry
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Setup Workspace)
+[Pipeline] sh
+[2025-04-01T16:37:40.672Z] + echo Setting up workspace...
+[2025-04-01T16:37:40.672Z] Setting up workspace...
+[2025-04-01T16:37:40.672Z] + mkdir -p /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:40.672Z] + chown -R jenkins:jenkins /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:40.672Z] + chmod -R 755 /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:40.672Z] + cd /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:40.672Z] + pwd
+[2025-04-01T16:37:40.672Z] /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:40.672Z] + ls -la
+[2025-04-01T16:37:40.672Z] total 46020
+[2025-04-01T16:37:40.672Z] drwxr-xr-x 4 jenkins jenkins     4096 Apr  1 16:37 .
+[2025-04-01T16:37:40.672Z] drwxr-xr-x 4 jenkins jenkins     4096 Apr  1 16:37 ..
+[2025-04-01T16:37:40.672Z] drwxr-xr-x 8 jenkins jenkins     4096 Apr  1 16:37 .git
+[2025-04-01T16:37:40.672Z] -rwxr-xr-x 1 jenkins jenkins     3443 Apr  1 16:37 .gitignore
+[2025-04-01T16:37:40.672Z] -rwxr-xr-x 1 jenkins jenkins     7034 Apr  1 16:37 Jenkinsfile
+[2025-04-01T16:37:40.672Z] -rwxr-xr-x 1 jenkins jenkins    24629 Apr  1 16:37 README.md
+[2025-04-01T16:37:40.672Z] -rwxr-xr-x 1 jenkins jenkins     4016 Apr  1 16:37 install.sh
+[2025-04-01T16:37:40.672Z] drwxr-xr-x 3 jenkins jenkins     4096 Apr  1 16:37 jenkins
+[2025-04-01T16:37:40.672Z] -rwxr-xr-x 1 jenkins jenkins  6732104 Apr  1 16:37 jenkins_k8s.gif
+[2025-04-01T16:37:40.672Z] -rwxr-xr-x 1 jenkins jenkins 40328947 Apr  1 16:37 jenkins_k8s.mov
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+[2025-04-01T16:37:40.746Z] Selected Git installation does not exist. Using Default
+[2025-04-01T16:37:40.746Z] The recommended git tool is: NONE
+[2025-04-01T16:37:40.751Z] No credentials specified
+[2025-04-01T16:37:40.757Z] Fetching changes from the remote Git repository
+ > git rev-list --no-walk 9a284d90df9bba86b45a2bd41770e78abdc85370 # timeout=10
+[2025-04-01T16:37:41.431Z] Checking out Revision ecdb2841575fe840792b3edad58fc5194c2f9879 (refs/remotes/origin/main)
+[2025-04-01T16:37:40.753Z]  > git rev-parse --resolve-git-dir /home/jenkins/agent/workspace/kubernetes-dynamic-agents/.git # timeout=10
+[2025-04-01T16:37:40.762Z]  > git config remote.origin.url https://github.com/tatotux/jenkins-k8s-dynamic-agents-poc.git # timeout=10
+[2025-04-01T16:37:40.851Z] Fetching upstream changes from https://github.com/tatotux/jenkins-k8s-dynamic-agents-poc.git
+[2025-04-01T16:37:40.851Z]  > git --version # timeout=10
+[2025-04-01T16:37:40.855Z]  > git --version # 'git version 2.39.5'
+[2025-04-01T16:37:40.855Z]  > git fetch --tags --force --progress -- https://github.com/tatotux/jenkins-k8s-dynamic-agents-poc.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2025-04-01T16:37:41.427Z]  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+[2025-04-01T16:37:41.433Z]  > git config core.sparsecheckout # timeout=10
+[2025-04-01T16:37:41.436Z]  > git checkout -f ecdb2841575fe840792b3edad58fc5194c2f9879 # timeout=10
+[2025-04-01T16:37:41.898Z] Commit message: "feat: Jenkins POC with Kubernetes Dynamic Agents - Complete implementation with documentation"
+[Pipeline] sh
+[2025-04-01T16:37:42.178Z] + echo Verifying checkout...
+[2025-04-01T16:37:42.178Z] Verifying checkout...
+[2025-04-01T16:37:42.178Z] + cd /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:42.178Z] + ls -la
+[2025-04-01T16:37:42.178Z] total 46020
+[2025-04-01T16:37:42.178Z] drwxr-xr-x 4 jenkins jenkins     4096 Apr  1 16:37 .
+[2025-04-01T16:37:42.178Z] drwxr-xr-x 4 jenkins jenkins     4096 Apr  1 16:37 ..
+[2025-04-01T16:37:42.178Z] drwxr-xr-x 8 jenkins jenkins     4096 Apr  1 16:37 .git
+[2025-04-01T16:37:42.178Z] -rw-r--r-- 1 jenkins jenkins     3443 Apr  1 16:37 .gitignore
+[2025-04-01T16:37:42.178Z] -rw-r--r-- 1 jenkins jenkins     7034 Apr  1 16:37 Jenkinsfile
+[2025-04-01T16:37:42.178Z] -rw-r--r-- 1 jenkins jenkins    24629 Apr  1 16:37 README.md
+[2025-04-01T16:37:42.178Z] -rwxr-xr-x 1 jenkins jenkins     4016 Apr  1 16:37 install.sh
+[2025-04-01T16:37:42.178Z] drwxr-xr-x 3 jenkins jenkins     4096 Apr  1 16:37 jenkins
+[2025-04-01T16:37:42.178Z] -rw-r--r-- 1 jenkins jenkins  6732104 Apr  1 16:37 jenkins_k8s.gif
+[2025-04-01T16:37:42.178Z] -rw-r--r-- 1 jenkins jenkins 40328947 Apr  1 16:37 jenkins_k8s.mov
+[2025-04-01T16:37:42.178Z] + git status
+[2025-04-01T16:37:42.799Z] HEAD detached at ecdb284
+[2025-04-01T16:37:42.799Z] nothing to commit, working tree clean
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Initialize)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+[2025-04-01T16:37:42.876Z] Running on pod: null
+[Pipeline] echo
+[2025-04-01T16:37:42.882Z] Pod namespace: null
+[Pipeline] echo
+[2025-04-01T16:37:42.887Z] Pod number: null
+[Pipeline] sh
+[2025-04-01T16:37:43.160Z] + echo === POD DIAGNOSTIC INFO ===
+[2025-04-01T16:37:43.160Z] === POD DIAGNOSTIC INFO ===
+[2025-04-01T16:37:43.160Z] + cd /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:43.160Z] + pwd
+[2025-04-01T16:37:43.160Z] + echo Current directory: /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:43.160Z] Current directory: /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:43.160Z] + echo Workspace contents:
+[2025-04-01T16:37:43.160Z] Workspace contents:
+[2025-04-01T16:37:43.160Z] + ls -la
+[2025-04-01T16:37:43.160Z] total 46020
+[2025-04-01T16:37:43.160Z] drwxr-xr-x 4 jenkins jenkins     4096 Apr  1 16:37 .
+[2025-04-01T16:37:43.160Z] drwxr-xr-x 4 jenkins jenkins     4096 Apr  1 16:37 ..
+[2025-04-01T16:37:43.160Z] drwxr-xr-x 8 jenkins jenkins     4096 Apr  1 16:37 .git
+[2025-04-01T16:37:43.160Z] -rw-r--r-- 1 jenkins jenkins     3443 Apr  1 16:37 .gitignore
+[2025-04-01T16:37:43.160Z] -rw-r--r-- 1 jenkins jenkins     7034 Apr  1 16:37 Jenkinsfile
+[2025-04-01T16:37:43.160Z] -rw-r--r-- 1 jenkins jenkins    24629 Apr  1 16:37 README.md
+[2025-04-01T16:37:43.160Z] -rwxr-xr-x 1 jenkins jenkins     4016 Apr  1 16:37 install.sh
+[2025-04-01T16:37:43.160Z] drwxr-xr-x 3 jenkins jenkins     4096 Apr  1 16:37 jenkins
+[2025-04-01T16:37:43.160Z] -rw-r--r-- 1 jenkins jenkins  6732104 Apr  1 16:37 jenkins_k8s.gif
+[2025-04-01T16:37:43.160Z] -rw-r--r-- 1 jenkins jenkins 40328947 Apr  1 16:37 jenkins_k8s.mov
+[2025-04-01T16:37:43.160Z] + hostname
+[2025-04-01T16:37:43.160Z] + echo Container ID: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.160Z] Container ID: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.160Z] + echo Node Name: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.160Z] Node Name: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.160Z] + echo Pod IP: null
+[2025-04-01T16:37:43.160Z] Pod IP: null
+[2025-04-01T16:37:43.160Z] + echo Jenkins URL: http://192.168.1.206:8080/
+[2025-04-01T16:37:43.160Z] Jenkins URL: http://192.168.1.206:8080/
+[2025-04-01T16:37:43.160Z] + echo Jenkins Tunnel: 192.168.1.206:50000
+[2025-04-01T16:37:43.160Z] Jenkins Tunnel: 192.168.1.206:50000
+[2025-04-01T16:37:43.160Z] + echo Jenkins Agent Name: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.160Z] Jenkins Agent Name: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.160Z] + echo Testing connectivity to Jenkins...
+[2025-04-01T16:37:43.160Z] Testing connectivity to Jenkins...
+[2025-04-01T16:37:43.160Z] + curl -s -f http://192.168.1.206:8080/
+[2025-04-01T16:37:43.160Z] + echo Connection to Jenkins failed
+[2025-04-01T16:37:43.160Z] Connection to Jenkins failed
+[2025-04-01T16:37:43.160Z] + echo Testing JNLP port...
+[2025-04-01T16:37:43.160Z] Testing JNLP port...
+[2025-04-01T16:37:43.160Z] + curl -s -f http://192.168.1.206:50000
+[2025-04-01T16:37:43.160Z] + echo JNLP port is accessible
+[2025-04-01T16:37:43.160Z] JNLP port is accessible
+[2025-04-01T16:37:43.160Z] + echo ======================
+[2025-04-01T16:37:43.160Z] ======================
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Parallel Tasks)
+[Pipeline] parallel
+[Pipeline] { (Branch: Task 1)
+[Pipeline] { (Branch: Task 2)
+[Pipeline] stage
+[Pipeline] { (Task 1)
+[Pipeline] stage
+[Pipeline] { (Task 2)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+[2025-04-01T16:37:43.297Z] Running Task 1
+[Pipeline] sh
+[Pipeline] echo
+[2025-04-01T16:37:43.324Z] Running Task 2
+[Pipeline] sh
+[2025-04-01T16:37:43.597Z] + cd /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:43.597Z] + echo === TASK 1 DIAGNOSTIC INFO ===
+[2025-04-01T16:37:43.597Z] === TASK 1 DIAGNOSTIC INFO ===
+[2025-04-01T16:37:43.597Z] + date
+[2025-04-01T16:37:43.597Z] + echo Task 1 started at Tue Apr  1 16:37:43 UTC 2025
+[2025-04-01T16:37:43.597Z] Task 1 started at Tue Apr  1 16:37:43 UTC 2025
+[2025-04-01T16:37:43.597Z] + hostname
+[2025-04-01T16:37:43.597Z] + echo Container ID: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.597Z] Container ID: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.597Z] + pwd
+[2025-04-01T16:37:43.597Z] + echo Current directory: /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:43.597Z] Current directory: /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:43.597Z] + echo Node Name: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.597Z] Node Name: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.597Z] + echo Pod IP: null
+[2025-04-01T16:37:43.597Z] Pod IP: null
+[2025-04-01T16:37:43.597Z] + echo Jenkins URL: http://192.168.1.206:8080/
+[2025-04-01T16:37:43.597Z] Jenkins URL: http://192.168.1.206:8080/
+[2025-04-01T16:37:43.597Z] + echo ======================
+[2025-04-01T16:37:43.597Z] ======================
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[2025-04-01T16:37:43.697Z] + cd /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:43.697Z] + echo === TASK 2 DIAGNOSTIC INFO ===
+[2025-04-01T16:37:43.697Z] === TASK 2 DIAGNOSTIC INFO ===
+[2025-04-01T16:37:43.697Z] + date
+[2025-04-01T16:37:43.697Z] + echo Task 2 started at Tue Apr  1 16:37:43 UTC 2025
+[2025-04-01T16:37:43.697Z] Task 2 started at Tue Apr  1 16:37:43 UTC 2025
+[2025-04-01T16:37:43.697Z] + hostname
+[2025-04-01T16:37:43.697Z] + echo Container ID: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.697Z] Container ID: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.697Z] + pwd
+[2025-04-01T16:37:43.697Z] + echo Current directory: /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:43.697Z] Current directory: /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:43.697Z] + echo Node Name: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.697Z] Node Name: kubernetes-dynamic-agents-26-b5dhn-ldzhx-c1fsk
+[2025-04-01T16:37:43.697Z] + echo Pod IP: null
+[2025-04-01T16:37:43.697Z] Pod IP: null
+[2025-04-01T16:37:43.697Z] + echo Jenkins URL: http://192.168.1.206:8080/
+[2025-04-01T16:37:43.697Z] Jenkins URL: http://192.168.1.206:8080/
+[2025-04-01T16:37:43.697Z] + echo ======================
+[2025-04-01T16:37:43.697Z] ======================
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Cleanup)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
+[2025-04-01T16:37:44.096Z] + echo Cleaning up workspace...
+[2025-04-01T16:37:44.096Z] Cleaning up workspace...
+[2025-04-01T16:37:44.096Z] + cd /home/jenkins/agent/workspace/kubernetes-dynamic-agents
+[2025-04-01T16:37:44.096Z] + rm -rf Jenkinsfile README.md install.sh jenkins jenkins_k8s.gif jenkins_k8s.mov
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+[2025-04-01T16:37:44.174Z] Pipeline completed at SUCCESS
+[Pipeline] echo
+[2025-04-01T16:37:44.179Z] Build number: 26
+[Pipeline] echo
+[2025-04-01T16:37:44.184Z] Duration: 36 sec and counting
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] echo
+[2025-04-01T16:37:44.208Z] Pipeline completed successfully
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // retry
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // retry
+[Pipeline] }
+[Pipeline] // podTemplate
+[Pipeline] End of Pipeline
+Finished: SUCCESS
