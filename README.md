@@ -340,7 +340,7 @@ After testing, remove the test pod:
 kubectl delete pod test-connection -n jenkins
 ```
 
-### 9. Ejemplos de Comandos y Resultados
+### 9. Examples of Commands and Results
 
 This section shows the commands executed and their results for verifying the configuration:
 
